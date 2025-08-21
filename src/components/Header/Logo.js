@@ -6,11 +6,11 @@ import profileImg from "@/public/profile-image.png"
 const Logo = () => {
   return (
     <div>
-      <Link href="/">
-        <div>
+      <Link href="/" className='flex items-center text-dark '>
+        <div className='w-16 rounded-full overflow-hidden border border-solid border-dark mr-5'>
             <Image src={profileImg} alt='Hridaey Raya' className='w-full h-auto rounded-full'/>
         </div>
-        <span>Hridaey</span>
+        <span className='font-bold text-2xl'>Hridaey</span>
     </Link>
     </div>
   )
