@@ -1,14 +1,25 @@
-import './globals.css'
-import { Inter, Manrope } from 'next/font/google'
-import Header from '../components/Header'
+import "./globals.css";
+import { Inter, Manrope } from "next/font/google";
+import Header from "../components/Header";
 
-const inter = Inter({ subsets: ['latin'], display: "swap", variable: "--font-in" })
-const manrope = Manrope({ subsets: ['latin'], display: "swap", variable: "--font-mr" })
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-in",
+});
+const manrope = Manrope({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-mr",
+});
 
 export const metadata = {
-  title: 'Mosiac',
-  description: 'Blogs for you',
-}
+  title: "Mosiac",
+  description: "Blogs for you",
+  icons: {
+    icon: "/favicon.ico", // ✅ correct
+  },
+};
 
 export default function RootLayout({ children }) {
   return (
@@ -18,5 +29,5 @@ export default function RootLayout({ children }) {
         {children}
       </body>
     </html>
-  )
+  );
 }
