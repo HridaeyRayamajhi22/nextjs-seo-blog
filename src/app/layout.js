@@ -17,7 +17,7 @@ export const metadata = {
   title: "Mosiac",
   description: "Blogs for you",
   icons: {
-    icon: "/favicon.ico", // ✅ correct
+    icon: "/favicon.ico",
   },
 };
 
