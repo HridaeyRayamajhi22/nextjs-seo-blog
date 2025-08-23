@@ -2,11 +2,38 @@ import { makeSource,defineDocumentType } from 'contentlayer-source-notion'
 
 const Doc = defineDocumentType(() => ({
   name: 'Blog',
-  filePathPattern: '**/*.md',
+  filePathPattern: '**/**/*.md',
   fields: {
     title: {
       type: 'string',
     },
+    publishAt:{
+      type: 'date',
+      required: true,
+    },
+     updatedAt:{
+      type: 'date',
+      required: true,
+    },
+     description:{
+      type: 'string',
+      required: true,
+    },
+    image: {
+      type: 'string',
+      required: true
+    },
+    isPublished: {
+      type: 'boolean',
+    },
+     author:{
+      type: 'string',
+      required: true,
+    },
+    tags:{
+      type: 'list',
+      of: {type: 'string'},
+    }
   },
 }))
  
