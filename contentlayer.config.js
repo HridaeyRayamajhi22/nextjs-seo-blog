@@ -1,6 +1,6 @@
-import { makeSource, defineDocumentType } from "contentlayer-source-notion";
+import { makeSource, defineDocumentType } from "contentlayer/source-files";
 
-const Doc = defineDocumentType(() => ({
+const Blog = defineDocumentType(() => ({
   name: "Blog",
   filePathPattern: "**/**/*.mdx",
   fields: {
@@ -20,8 +20,7 @@ const Doc = defineDocumentType(() => ({
       required: true,
     },
     image: {
-      type: "string",
-      required: true,
+      type: "image"
     },
     isPublished: {
       type: "boolean",
@@ -46,5 +45,5 @@ const Doc = defineDocumentType(() => ({
 export default makeSource({
   /* options */
   contentDirPath: "content",
-  DocumentType: [Blog],
+  documentTypes: [Blog],
 });
