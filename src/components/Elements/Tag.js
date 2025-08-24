@@ -1,11 +1,20 @@
-import React from 'react'
+import { cx } from "@/src/utils";
+import Link from "next/link";
+import React from "react";
 
-const Tag = () => {
+const Tag = ({ link = "#", name, className, ...props }) => {
   return (
-    <div>
-      
-    </div>
-  )
-}
+    <Link
+      href={link}
+      className={cx(
+        "inline-block py-3 px-10 bg-dark text-light rounded-full capitalize font-semibold border-2 border-solid border-light hover:scale-110 transition-transform duration-200 ease-in-out cursor-pointer",
+        className
+      )}
+      {...props}
+    >
+      {name}
+    </Link>
+  );
+};
 
-export default Tag
+export default Tag;
