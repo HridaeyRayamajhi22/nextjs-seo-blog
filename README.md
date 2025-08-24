@@ -1,2 +1,2 @@
-SEO Blog in the initail process of build..
-Status: Home page building...
+SEO Blog in the initail process of build.. <br />
+Status: Content layer is update process..
