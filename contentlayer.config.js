@@ -1,8 +1,10 @@
 import { makeSource, defineDocumentType } from "contentlayer/source-files";
 import readingTime from "reading-time";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
+import { theme } from "./project-files/siteMetaData";
 
 const Blog = defineDocumentType(() => ({
   name: "Blog",
@@ -51,9 +53,20 @@ const Blog = defineDocumentType(() => ({
   },
 }));
 
+const codeOptions = {
+  theme: "rose-pine-dawn.json",
+};
+
 export default makeSource({
   /* options */
   contentDirPath: "content",
   documentTypes: [Blog],
-  mdx: { remarkPlugins: [remarkGfm], rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, {behavior: "append" }]] },
+  mdx: {
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [
+      rehypeSlug,
+      [rehypeAutolinkHeadings, { behavior: "append" }],
+      [rehypePrettyCode, codeOptions],
+    ],
+  },
 });
