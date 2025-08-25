@@ -14,7 +14,7 @@ const RecentPost = ({ blogs }) => {
         </h2>
         <Link
           href="/categories/all"
-          className="mt-4 md:mt-0 inline-block font-medium text-accent underline underline-offset-2 text-lg"
+          className="mt-4 md:mt-0 inline-block font-medium text-accent underline underline-offset-2 text-lg hover:text-teal-400"
         >
           See More
         </Link>
