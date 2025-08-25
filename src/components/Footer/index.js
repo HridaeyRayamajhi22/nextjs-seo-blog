@@ -102,22 +102,22 @@ const Footer = () => {
       <div className="mt-12 text-center text-sm text-lime-100/70">
         <p>© 2025 Hridaaey Rayamajhi. All Rights Reserved.</p>
         <p className="mt-1">
-          Made with <span className="text-red-500">❤</span> by Hridaey
+          A small <span className="text-lime-400">performance</span> for you guys...
         </p>
       </div>
 
       {/* Guitarist Animation*/}
       <div className="mt-10 relative flex justify-center items-center">
-        {/* Optional glowing circle behind the animation */}
-        <div className="absolute w-60 h-60 md:w-80 md:h-80 rounded-full bg-lime-400/20 filter blur-3xl animate-pulse"></div>
+  {/* Pulsing glowing circle behind the animation */}
+  <div className="absolute w-60 h-60 md:w-80 md:h-80 rounded-full bg-pink-800/30 filter blur-3xl animate-pulse"></div>
 
-        {/* Lottie Animation */}
-        <Lottie
-          animationData={GAnimation}
-          loop={true}
-          className="w-40 h-40 md:w-60 md:h-60 drop-shadow-2xl transition-transform duration-500 hover:scale-110 hover:-translate-y-2"
-        />
-      </div>
+  {/* Lottie Animation */}
+  <Lottie
+    animationData={GAnimation}
+    loop={true}
+    className="w-40 h-40 md:w-60 md:h-60 drop-shadow-2xl transition-transform duration-500 hover:scale-110 hover:-translate-y-2"
+  />
+</div>
     </footer>
   );
 };
