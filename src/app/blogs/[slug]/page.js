@@ -55,7 +55,7 @@ export default async function BlogPage({ params }) {
       {/* Blog Content Section (example, can add MDX rendering here later) */}
       <div className="prose prose-invert max-w-3xl mx-auto px-4 md:px-0 text-base md:text-lg leading-relaxed">
         <p>
-           <BlogDetails blog={blog} slug={slug}/>
+           <BlogDetails blog={blog} slug={params.slug}/>
         </p>
       </div>
     </article>
