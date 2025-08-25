@@ -1,5 +1,8 @@
 import { makeSource, defineDocumentType } from "contentlayer/source-files";
 import readingTime from "reading-time";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeSlug from "rehype-slug";
+import remarkGfm from "remark-gfm";
 
 const Blog = defineDocumentType(() => ({
   name: "Blog",
@@ -22,7 +25,7 @@ const Blog = defineDocumentType(() => ({
       required: true,
     },
     image: {
-      type: "image"
+      type: "image",
     },
     isPublished: {
       type: "boolean",
@@ -43,8 +46,8 @@ const Blog = defineDocumentType(() => ({
     },
     readingTime: {
       type: "json",
-      resolve: (doc) => readingTime(doc.body.raw)
-    }
+      resolve: (doc) => readingTime(doc.body.raw),
+    },
   },
 }));
 
@@ -52,4 +55,5 @@ export default makeSource({
   /* options */
   contentDirPath: "content",
   documentTypes: [Blog],
+  mdx: { remarkPlugins: [remarkGfm], rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, {behavior: "append" }]] },
 });
