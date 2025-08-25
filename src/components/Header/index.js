@@ -1,70 +1,72 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Logo from "./Logo";
 import Link from "next/link";
 import Image from "next/image";
-// import { MoonIcon } from "@/project-files/Icons";
 import { SunIcon } from "@/project-files/Icons";
 
 const Header = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const socialLinks = [
+    { href: "https://linkedin.com/in/hridaaeyrayamajhi22", src: "/svgs/linkedin.svg", alt: "LinkedIn" },
+    { href: "https://instagram.com/hridaey__", src: "/svgs/insta.png", alt: "Instagram" },
+    { href: "https://github.com/HridaeyRayamajhi22", src: "/svgs/github.svg", alt: "Github" },
+    { href: "https://youtube.com/@hridaaey_rayamajhi", src: "/svgs/youtube.svg", alt: "YouTube" }
+  ];
+
   return (
-    <header className="w-full p-4 px-10 flex items-center justify-between">
+    <header className="w-full px-4 md:px-10 py-4 flex items-center justify-between relative z-50">
+      
       {/* Logo */}
       <Logo />
 
-      {/* Navigation */}
-      <nav className="w-max py-3 px-8 border border-solid border-dark rounded-full font-medium capitalize flex items-center fixed top-6 right-1/2 translate-x-1/2 bg-light/80 backdrop-blur-sm">
-        <Link href="/" className="mr-4 ">
-          <p className="hover:text-teal-400 hover:underline hover:font-semibold"> Home</p>
-        </Link>
-        <Link href="/about" className="mr-4">
-          <p className="hover:text-teal-400 hover:underline hover:font-semibold">About</p>
-        </Link>
-        <Link href="/contact" className="mr-4">
-          <p className="hover:text-teal-400 hover:underline hover:font-semibold">Contact</p>
-        </Link>
-        <button className="ml-4">
-           <SunIcon />
-           {/* <MoonIcon /> */}
-        </button>
+      {/* Desktop Navigation */}
+      <nav className="hidden md:flex fixed top-6 left-1/2 transform -translate-x-1/2 bg-light/80 backdrop-blur-sm border border-dark rounded-full px-8 py-3 font-medium capitalize items-center space-x-6 z-40">
+        <Link href="/" className="hover:text-teal-400 hover:underline hover:font-semibold">Home</Link>
+        <Link href="/about" className="hover:text-teal-400 hover:underline hover:font-semibold">About</Link>
+        <Link href="/contact" className="hover:text-teal-400 hover:underline hover:font-semibold">Contact</Link>
+        <button className="ml-4"><SunIcon /></button>
       </nav>
 
-      {/* Social Links */}
-      <div className="flex gap-4">
-        <a
-          href="https://linkedin.com/in/hridaaeyrayamajhi22"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="transition-transform duration-300 hover:scale-110 hover:-rotate-6 hover:-translate-y-1"
-        >
-          <Image src="/svgs/linkedin.svg" alt="LinkedIn" width={24} height={24} />
-        </a>
+      {/* Mobile Hamburger */}
+      <button
+        className="md:hidden flex flex-col justify-center items-center w-8 h-8 relative z-50"
+        onClick={() => setMenuOpen(!menuOpen)}
+        aria-label="Toggle Menu"
+      >
+        <span className={`block h-0.5 w-6 bg-dark mb-1 transition-transform ${menuOpen ? "rotate-45 translate-y-2" : ""}`} />
+        <span className={`block h-0.5 w-6 bg-dark mb-1 transition-opacity ${menuOpen ? "opacity-0" : "opacity-100"}`} />
+        <span className={`block h-0.5 w-6 bg-dark transition-transform ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+      </button>
 
-        <a
-          href="https://instagram.com/hridaey__"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="transition-transform duration-300 hover:scale-110 hover:rotate-6 hover:-translate-y-1"
-        >
-          <Image src="/svgs/insta.png" alt="Instagram" width={24} height={24} />
-        </a>
+      {/* Mobile Navigation */}
+      <div className={`md:hidden absolute top-full left-0 w-full bg-light/95 backdrop-blur-sm overflow-hidden transition-max-h duration-300 ${menuOpen ? "max-h-screen" : "max-h-0"}`}>
+        <nav className="flex flex-col items-center py-4 space-y-4">
+          <Link href="/" className="hover:text-teal-400 hover:underline hover:font-semibold">Home</Link>
+          <Link href="/about" className="hover:text-teal-400 hover:underline hover:font-semibold">About</Link>
+          <Link href="/contact" className="hover:text-teal-400 hover:underline hover:font-semibold">Contact</Link>
+          <button><SunIcon /></button>
+        </nav>
 
-        <a
-          href="https://github.com/HridaeyRayamajhi22"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="transition-transform duration-300 hover:scale-110 hover:-rotate-6 hover:-translate-y-1"
-        >
-          <Image src="/svgs/github.svg" alt="Github" width={24} height={24} />
-        </a>
+        {/* Mobile Social Links */}
+        <div className="flex justify-center gap-4 mt-4 mb-4">
+          {socialLinks.map(social => (
+            <a key={social.href} href={social.href} target="_blank" rel="noopener noreferrer">
+              <Image src={social.src} alt={social.alt} width={24} height={24} />
+            </a>
+          ))}
+        </div>
+      </div>
 
-        <a
-          href="https://youtube.com/@hridaaey_rayamajhi"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="transition-transform duration-300 hover:scale-110 hover:rotate-6 hover:-translate-y-1"
-        >
-          <Image src="/svgs/youtube.svg" alt="YouTube" width={24} height={24} />
-        </a>
+      {/* Desktop Social Links */}
+      <div className="hidden md:flex gap-4 ml-auto">
+        {socialLinks.map(social => (
+          <a key={social.href} href={social.href} target="_blank" rel="noopener noreferrer" className="transition-transform duration-300 hover:scale-110 hover:-rotate-6 hover:-translate-y-1">
+            <Image src={social.src} alt={social.alt} width={24} height={24} />
+          </a>
+        ))}
       </div>
     </header>
   );
