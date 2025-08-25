@@ -27,7 +27,7 @@ export default async function BlogPage({ params }) {
             <Tag
               name={blog.tags[0]}
               link={`/categories/${blog.tags[0]}`}
-              className="px-4 md:px-6 text-xs md:text-sm py-1.5 md:py-2"
+              className="px-4 md:px-6 text-xs md:text-sm py-1.5 md:py-2 bg-lime-950"
             />
           )}
 
