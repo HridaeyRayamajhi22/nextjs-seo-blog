@@ -10,9 +10,9 @@ const HomeCoverSection = ({ blogs }) => {
 
   if (!blog) return null;
 
-  const imageSrc = blog.image.filePath.startsWith("../public")
-    ? blog.image.filePath.replace("../public", "")
-    : blog.image.filePath;
+  const imageSrc = blog.image.startsWith("../public")
+    ? blog.image.replace("../public", "")
+    : blog.image;
 
   return (
     <div className="w-full">
@@ -24,7 +24,7 @@ const HomeCoverSection = ({ blogs }) => {
         />
         <Image
           src={imageSrc}
-          placeholder="blur"
+      
           blurDataURL={blog.image.blurhashDataUrl}
           alt={blog.title}
           fill

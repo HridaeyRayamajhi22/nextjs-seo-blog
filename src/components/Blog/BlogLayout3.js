@@ -10,8 +10,8 @@ const BlogLayout3 = ({ blog }) => {
       <Link href={blog.url} className="w-full">
         <div className="relative w-full aspect-[4/3] overflow-hidden rounded-xl shadow-md hover:shadow-lg transition-shadow">
           <Image
-            src={blog.image.filePath.replace("../public", "")}
-            placeholder="blur"
+            src={blog.image.replace("../public", "")}
+         
             blurDataURL={blog.image.blurhashDataUrl}
             alt={blog.title}
             fill

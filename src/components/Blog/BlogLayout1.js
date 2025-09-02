@@ -12,8 +12,8 @@ const BlogLayout1 = ({ blog }) => {
       {/* Blog Image */}
       <div className="relative w-full aspect-[16/9] md:aspect-[4/3]">
         <Image
-          src={blog.image.filePath.replace("../public", "")}
-          placeholder="blur"
+          src={blog.image.replace("../public", "")}
+        
           blurDataURL={blog.image.blurhashDataUrl}
           alt={blog.title}
           fill
