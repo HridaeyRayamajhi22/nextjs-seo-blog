@@ -5,9 +5,11 @@ import Logo from "./Logo";
 import Link from "next/link";
 import Image from "next/image";
 import { SunIcon } from "@/project-files/Icons";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname(); // ✅ get current route
 
   const socialLinks = [
     {
@@ -32,6 +34,12 @@ const Header = () => {
     },
   ];
 
+  const navLinks = [
+    { href: "/", label: "Home" },
+    { href: "/about", label: "About" },
+    { href: "/contact", label: "Contact" },
+  ];
+
   return (
     <header className="w-full px-4 md:px-10 py-4 flex items-center justify-between relative z-50">
       {/* Logo */}
@@ -39,24 +47,19 @@ const Header = () => {
 
       {/* Desktop Navigation */}
       <nav className="hidden md:flex fixed top-6 left-1/2 transform -translate-x-1/2 bg-light/80 backdrop-blur-sm border border-dark rounded-full px-8 py-3 font-medium capitalize items-center space-x-6 z-40">
-        <Link
-          href="/"
-          className="hover:text-teal-400 hover:underline hover:font-semibold"
-        >
-          Home
-        </Link>
-        <Link
-          href="/about"
-          className="hover:text-teal-400 hover:underline hover:font-semibold"
-        >
-          About
-        </Link>
-        <Link
-          href="/contact"
-          className="hover:text-teal-400 hover:underline hover:font-semibold"
-        >
-          Contact
-        </Link>
+        {navLinks.map((link) => (
+          <Link
+            key={link.href}
+            href={link.href}
+            className={`transition ${
+              pathname === link.href
+                ? "text-indigo-600 font-semibold underline" // ✅ active styles
+                : "hover:text-indigo-500 hover:underline"
+            }`}
+          >
+            {link.label}
+          </Link>
+        ))}
         <button className="ml-4">
           <SunIcon />
         </button>
@@ -92,24 +95,19 @@ const Header = () => {
         }`}
       >
         <nav className="flex flex-col items-center py-4 space-y-4">
-          <Link
-            href="/"
-            className="hover:text-teal-400 hover:underline hover:font-semibold mx-2"
-          >
-            Home
-          </Link>
-          <Link
-            href="/about"
-            className="hover:text-teal-400 hover:underline hover:font-semibold mx-2"
-          >
-            About
-          </Link>
-          <Link
-            href="/contact"
-            className="hover:text-teal-400 hover:underline hover:font-semibold mx-2"
-          >
-            Contact
-          </Link>
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`mx-2 transition ${
+                pathname === link.href
+                  ? "text-teal-500 font-semibold underline" // ✅ active styles for mobile
+                  : "hover:text-teal-400 hover:underline"
+              }`}
+            >
+              {link.label}
+            </Link>
+          ))}
           <button>
             <SunIcon />
           </button>

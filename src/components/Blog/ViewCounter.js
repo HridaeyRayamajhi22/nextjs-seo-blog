@@ -4,52 +4,46 @@ import React, { useEffect, useState } from "react";
 
 const supabase = createClientComponentClient();
 
-const ViewCounter = ({ slug, noCount, showCount = true }) => {
-  const [views, setViews] = useState(0);
+const ViewCounter = ({ slug, noCount = false, showCount = true }) => {
+  const [views, setViews] = useState(null);
 
   useEffect(() => {
-    const incrementAndFetch = async () => {
+    const loadViews = async () => {
       try {
-        // Call the increment function (returns updated count)
-        let { data, error } = await supabase.rpc("increment", {
-          slug_text: slug,
-        });
+        if (!noCount) {
+          // Increment and get the new count
+          const { data, error } = await supabase.rpc("increment", {
+            slug_text: slug,
+          });
 
-        if (error) {
-          console.error(error);
+          if (error) throw error;
+          setViews(data ?? 0);
         } else {
-          setViews(data);
+          // Only fetch count
+          const { data, error } = await supabase
+            .from("views")
+            .select("count")
+            .eq("slug", slug)
+            .maybeSingle(); // safer than .single()
+
+          if (error) throw error;
+          setViews(data?.count ?? 0);
         }
-      } catch (error) {
-        console.error("An error occurred while incrementing the views", error);
+      } catch (err) {
+        console.error("ViewCounter error:", err.message);
       }
     };
 
-    if (!noCount) {
-      incrementAndFetch();
-    } else {
-      // If we're not incrementing, just fetch the existing count
-      const fetchViews = async () => {
-        let { data, error } = await supabase
-          .from("views")
-          .select("count")
-          .eq("slug", slug)
-          .single();
-
-        if (error) {
-          console.error(error);
-        } else {
-          setViews(data ? data.count : 0);
-        }
-      };
-
-      fetchViews();
-    }
+    loadViews();
   }, [slug, noCount]);
 
   if (!showCount) return null;
 
-  return <div>{views}</div>;
+  return (
+    <span>
+       {views !== null ? views : "…"} {views === 1 ? "view" : "views"}
+    </span>
+  );
 };
 
 export default ViewCounter;
