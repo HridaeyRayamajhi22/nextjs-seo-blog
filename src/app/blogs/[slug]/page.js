@@ -24,7 +24,7 @@ export default async function BlogPage({ params }) {
   return (
     <article className="w-full">
       {/* ===== Blog Header Section ===== */}
-      <header className="mb-12 relative w-full h-[40vh] md:h-[70vh] rounded-xl overflow-hidden shadow-lg">
+      <header className="mb-12 relative w-full h-[40vh] md:h-[70vh] rounded-xl overflow-hidden shadow-lg ">
         {/* Dark Overlay */}
         <div className="absolute inset-0 bg-black/40 z-10" />
 
@@ -53,14 +53,14 @@ export default async function BlogPage({ params }) {
       </header>
 
       {/* ===== Blog Meta (Details) ===== */}
-      <section className="max-w-4xl mx-auto px-4 md:px-0">
+      <section className="max-w-4xl mx-auto px-4 md:px-0 dark:text-light">
         <BlogDetails blog={blog} slug={params.slug} />
       </section>
 
       {/* ===== Blog Content with Sidebar ===== */}
-      <section className="flex flex-col lg:grid lg:grid-cols-12 gap-8 mt-12 max-w-6xl mx-auto px-4 md:px-0">
+      <section className="flex flex-col lg:grid lg:grid-cols-12 gap-8 mt-12 max-w-6xl mx-auto px-4 md:px-0 ">
         {/* Main Content (MDX Renderer) */}
-        <main className="order-1 lg:order-none lg:col-span-8 prose prose-invert max-w-none text-base md:text-lg leading-relaxed">
+        <main className="order-1 lg:order-none lg:col-span-8 prose prose-invert max-w-none text-base md:text-lg leading-relaxed ">
           <RenderMdx blog={blog} />
         </main>
 
@@ -93,7 +93,7 @@ export default async function BlogPage({ params }) {
                 />
               </svg>
             </div>
-            <h2 className="text-base font-semibold tracking-wide uppercase text-gray-200">
+            <h2 className="text-base font-semibold tracking-wide uppercase text-gray-200 dark:text-light">
               Table of Contents
             </h2>
           </div>
@@ -102,7 +102,7 @@ export default async function BlogPage({ params }) {
           <nav className="relative">
             <div className="absolute left-3 top-0 bottom-0 w-0.5 bg-gradient-to-b from-lime-400/20 via-gray-600/30 to-transparent"></div>
 
-            <ul className="space-y-1 relative text-sm md:text-base">
+            <ul className="space-y-1 relative text-sm md:text-base dark:text-light">
               {blog.toc.map((heading) => (
                 <li key={heading.slug} className="group relative">
                   <a

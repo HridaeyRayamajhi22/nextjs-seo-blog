@@ -39,10 +39,10 @@ const CategoryPage = ({ params }) => {
     <article className="max-w-6xl mx-auto px-4 md:px-0 py-8">
       {/* Page Header */}
       <header className="mb-8 text-center">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-2">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-2 dark:text-light">
           #{params.slug}
         </h1>
-        <p className="text-gray-600 text-base sm:text-lg">
+        <p className="text-gray-600 text-base sm:text-lg dark:text-light">
           Discover more categories and expand your ideas
         </p>
       </header>
@@ -77,7 +77,7 @@ const CategoryPage = ({ params }) => {
               {blog.tags?.length > 0 && (
                 <Link
                   href={`/categories/${slug(blog.tags[0])}`}
-                  className="absolute bottom-4 right-4 text-sm md:text-base font-medium text-violet-400 hover:text-violet-200 transition-colors duration-300"
+                  className="absolute bottom-4 right-4 text-sm md:text-base font-medium text-violet-400 hover:text-violet-200 transition-colors duration-300 "
                 >
                   #{blog.tags[0]}
                 </Link>
