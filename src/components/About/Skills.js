@@ -26,7 +26,7 @@ const skills = [
 const Skills = () => {
   return (
     <section className="max-w-4xl mx-auto px-6 py-12 text-center">
-      <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+      <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6 dark:text-light">
         I’m comfortable in...
       </h2>
 

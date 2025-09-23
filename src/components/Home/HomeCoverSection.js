@@ -36,7 +36,7 @@ const HomeCoverSection = ({ blogs }) => {
           <Tag
             link={`/categories/${slug(blog.tags[0])}`}
             name={blog.tags[0]}
-            className=" bg-green-500/10 text-dark"
+            className=" bg-green-500/10 text-dark dark:text-light"
           />
 
           <Link href={blog.url} className="mt-6">

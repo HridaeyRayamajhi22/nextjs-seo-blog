@@ -14,26 +14,10 @@ const Header = () => {
   const [mode, setMode] = useThemeSwitch();
 
   const socialLinks = [
-    {
-      href: "https://linkedin.com/in/hridaaeyrayamajhi22",
-      src: "/svgs/linkedin.svg",
-      alt: "LinkedIn",
-    },
-    {
-      href: "https://instagram.com/hridaey__",
-      src: "/svgs/insta.png",
-      alt: "Instagram",
-    },
-    {
-      href: "https://github.com/HridaeyRayamajhi22",
-      src: "/svgs/github.svg",
-      alt: "Github",
-    },
-    {
-      href: "https://youtube.com/@hridaaey_rayamajhi",
-      src: "/svgs/youtube.svg",
-      alt: "YouTube",
-    },
+    { href: "https://linkedin.com/in/hridaaeyrayamajhi22", src: "/svgs/linkedin.svg", alt: "LinkedIn" },
+    { href: "https://instagram.com/hridaey__", src: "/svgs/insta.png", alt: "Instagram" },
+    { href: "https://github.com/HridaeyRayamajhi22", src: "/svgs/github.svg", alt: "Github" },
+    { href: "https://youtube.com/@hridaaey_rayamajhi", src: "/svgs/youtube.svg", alt: "YouTube" },
   ];
 
   const navLinks = [
@@ -48,15 +32,15 @@ const Header = () => {
       <Logo />
 
       {/* Desktop Navigation */}
-      <nav className="hidden md:flex fixed top-6 left-1/2 transform -translate-x-1/2 bg-light/80 backdrop-blur-sm border border-dark rounded-full px-8 py-3 font-medium capitalize items-center space-x-6 z-40">
+      <nav className="hidden md:flex fixed top-6 left-1/2 transform -translate-x-1/2 bg-light/80 dark:text-white dark:bg-slate-950 dark:border-white backdrop-blur-sm border border-dark dark:border-gray-700 rounded-full px-8 py-3 font-medium capitalize items-center space-x-6 z-40">
         {navLinks.map((link) => (
           <Link
             key={link.href}
             href={link.href}
             className={`transition ${
               pathname === link.href
-                ? "text-indigo-600 font-semibold underline"
-                : "hover:text-indigo-500 hover:underline"
+                ? "text-indigo-600 dark:text-indigo-400 font-semibold underline"
+                : "hover:text-indigo-500 dark:hover:text-indigo-300 hover:underline"
             }`}
           >
             {link.label}
@@ -71,44 +55,75 @@ const Header = () => {
         </button>
       </nav>
 
-      {/* Mobile Hamburger */}
+      {/* Mobile Hamburger (turns into X) */}
       <button
-        className="md:hidden flex flex-col justify-center items-center w-8 h-8 relative z-50 dark:text-slate-50"
+        className="md:hidden flex flex-col justify-center items-center w-8 h-8 relative z-50"
         onClick={() => setMenuOpen(!menuOpen)}
         aria-label="Toggle Menu"
       >
         <span
-          className={`block h-0.5 w-6 bg-dark mb-1 transition-transform ${
+          className={`block h-0.5 w-6 mb-1 transition-all duration-300 ${
             menuOpen ? "rotate-45 translate-y-2" : ""
-          }`}
+          } ${mode === "dark" ? "bg-white" : "bg-dark"}`}
         />
         <span
-          className={`block h-0.5 w-6 bg-dark mb-1 transition-opacity ${
+          className={`block h-0.5 w-6 mb-1 transition-all duration-300 ${
             menuOpen ? "opacity-0" : "opacity-100"
-          }`}
+          } ${mode === "dark" ? "bg-white" : "bg-dark"}`}
         />
         <span
-          className={`block h-0.5 w-6 bg-dark transition-transform ${
+          className={`block h-0.5 w-6 transition-all duration-300 ${
             menuOpen ? "-rotate-45 -translate-y-2" : ""
-          }`}
+          } ${mode === "dark" ? "bg-white" : "bg-dark"}`}
         />
       </button>
 
-      {/* Mobile Navigation */}
+      {/* Overlay (click to close) */}
+      {menuOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm md:hidden"
+          onClick={() => setMenuOpen(false)}
+        />
+      )}
+
+      {/* Mobile Sidebar */}
       <div
-        className={`md:hidden absolute top-full left-0 w-full bg-light/95 backdrop-blur-sm overflow-hidden transition-max-h duration-300 dark:text-white dark:bg-slate-950 ${
-          menuOpen ? "max-h-screen" : "max-h-0"
+        className={`fixed top-0 right-0 h-screen w-1/2 bg-light dark:bg-slate-950 text-dark dark:text-white shadow-lg transform transition-transform duration-300 ease-in-out md:hidden z-50 ${
+          menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <nav className="flex flex-col items-center py-4 space-y-4">
+        {/* Sidebar Header with Close (X) button */}
+        <div className="flex items-center justify-between px-4 py-4 border-b border-gray-300 dark:border-gray-700">
+          <span className="font-bold text-lg">Menu</span>
+          <button
+            onClick={() => setMenuOpen(false)}
+            aria-label="Close Menu"
+            className="flex flex-col justify-center items-center w-8 h-8"
+          >
+            <span
+              className={`block h-0.5 w-6 mb-1 rotate-45 translate-y-2 ${
+                mode === "dark" ? "bg-white" : "bg-dark"
+              }`}
+            />
+            <span
+              className={`block h-0.5 w-6 -rotate-45 -translate-y-2 ${
+                mode === "dark" ? "bg-white" : "bg-dark"
+              }`}
+            />
+          </button>
+        </div>
+
+        {/* Nav Links */}
+        <nav className="flex flex-col items-center mt-8 space-y-6">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`mx-2 transition ${
+              onClick={() => setMenuOpen(false)}
+              className={`transition ${
                 pathname === link.href
-                  ? "text-teal-500 font-semibold underline"
-                  : "hover:text-teal-400 hover:underline"
+                  ? "text-teal-600 dark:text-teal-400 font-semibold underline"
+                  : "hover:text-teal-500 dark:hover:text-teal-300 hover:underline"
               }`}
             >
               {link.label}
@@ -116,21 +131,22 @@ const Header = () => {
           ))}
           <button
             onClick={() => setMode(mode === "light" ? "dark" : "light")}
-            className="ml-4"
+            className="mt-6"
             aria-label="Toggle Theme"
           >
             {mode === "light" ? <MoonIcon size={20} /> : <SunIcon size={20} />}
           </button>
         </nav>
 
-        {/* Mobile Social Links */}
-        <div className="flex justify-center gap-4 mt-4 mb-4">
+        {/* Social Links */}
+        <div className="flex justify-center gap-4 mt-10">
           {socialLinks.map((social) => (
             <a
               key={social.href}
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
+              className="hover:scale-110 transition-transform"
             >
               <Image src={social.src} alt={social.alt} width={24} height={24} />
             </a>

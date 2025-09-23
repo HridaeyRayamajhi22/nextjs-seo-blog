@@ -9,7 +9,7 @@ const RecentPost = ({ blogs }) => {
   return (
     <section className="w-full mt-32 px-4 md:px-16 lg:px-32 flex flex-col items-center justify-center">
       <div className="w-full flex flex-col md:flex-row md:justify-between items-center md:items-end mb-8">
-        <h2 className="font-bold capitalize text-3xl md:text-4xl text-center md:text-left">
+        <h2 className="font-bold capitalize text-3xl md:text-4xl text-center md:text-left dark:text-light">
           Recent Posts
         </h2>
         <Link

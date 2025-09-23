@@ -29,7 +29,7 @@ const BlogLayout2 = ({ blog }) => {
 
         {/* Title */}
         <Link href={blog.url} className="inline-block my-2">
-          <h3 className="capitalize text-lg font-semibold text-accentDark-300 leading-snug">
+          <h3 className="capitalize text-lg font-semibold text-accentDark-300 leading-snug dark:text-light">
             <span className="bg-gradient-to-r from-accent/50 to-accent/50 bg-[length:0px_6px] hover:bg-[length:100%_6px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500">
               {blog.title}
             </span>
@@ -37,7 +37,7 @@ const BlogLayout2 = ({ blog }) => {
         </Link>
 
         {/* Date */}
-        <span className="capitalize text-dark/50 font-medium text-sm">
+        <span className="capitalize text-dark/50 font-medium text-sm dark:text-gray">
           {format(new Date(blog.publishedAt), "MMMM dd, yyyy")}
         </span>
       </div>

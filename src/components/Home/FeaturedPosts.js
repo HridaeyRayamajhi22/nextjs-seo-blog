@@ -8,7 +8,7 @@ const FeaturedPosts = ({ blogs }) => {
 
   return (
     <section className="w-full mt-32 px-4 md:px-16 lg:px-32 flex flex-col items-center justify-center">
-      <h2 className="w-full font-bold capitalize text-3xl md:text-4xl mb-8 text-center md:text-left">
+      <h2 className="w-full font-bold capitalize text-3xl md:text-4xl mb-8 text-center md:text-left dark:text-light">
         Featured Posts
       </h2>
 

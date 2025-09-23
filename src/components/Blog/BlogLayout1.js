@@ -27,11 +27,11 @@ const BlogLayout1 = ({ blog }) => {
         <Tag
           link={`/categories/${slug(blog.tags[0])}`}
           name={blog.tags[0]}
-          className="bg-green-600/95 px-4 md:px-6 text-xs md:text-sm py-1 md:py-2 !border"
+          className="bg-green-600/95 px-4 md:px-6 text-xs md:text-sm py-1 md:py-2 !border "
         />
 
         <Link href={blog.url} className="mt-2 md:mt-6 block">
-          <h3 className="capitalize text-lg md:text-2xl font-bold text-lime-50 leading-snug">
+          <h3 className="capitalize text-lg md:text-2xl font-bold text-lime-50 leading-snug ">
             <span className="bg-gradient-to-r from-accent to-accent bg-[length:0px_4px] md:bg-[length:0px_6px] hover:bg-[length:100%_6px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500">
               {blog.title}
             </span>
