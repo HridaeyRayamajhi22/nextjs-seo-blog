@@ -4,12 +4,14 @@ import React, { useState } from "react";
 import Logo from "./Logo";
 import Link from "next/link";
 import Image from "next/image";
-import { SunIcon } from "@/project-files/Icons";
+import { SunIcon, MoonIcon } from "@/project-files/Icons";
 import { usePathname } from "next/navigation";
+import { useThemeSwitch } from "../Hooks/useThemeSwitch";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const pathname = usePathname(); // ✅ get current route
+  const pathname = usePathname();
+  const [mode, setMode] = useThemeSwitch();
 
   const socialLinks = [
     {
@@ -53,21 +55,25 @@ const Header = () => {
             href={link.href}
             className={`transition ${
               pathname === link.href
-                ? "text-indigo-600 font-semibold underline" // ✅ active styles
+                ? "text-indigo-600 font-semibold underline"
                 : "hover:text-indigo-500 hover:underline"
             }`}
           >
             {link.label}
           </Link>
         ))}
-        <button className="ml-4">
-          <SunIcon />
+        <button
+          onClick={() => setMode(mode === "light" ? "dark" : "light")}
+          className="ml-4"
+          aria-label="Toggle Theme"
+        >
+          {mode === "light" ? <MoonIcon size={20} /> : <SunIcon size={20} />}
         </button>
       </nav>
 
       {/* Mobile Hamburger */}
       <button
-        className="md:hidden flex flex-col justify-center items-center w-8 h-8 relative z-50"
+        className="md:hidden flex flex-col justify-center items-center w-8 h-8 relative z-50 dark:text-slate-50"
         onClick={() => setMenuOpen(!menuOpen)}
         aria-label="Toggle Menu"
       >
@@ -90,7 +96,7 @@ const Header = () => {
 
       {/* Mobile Navigation */}
       <div
-        className={`md:hidden absolute top-full left-0 w-full bg-light/95 backdrop-blur-sm overflow-hidden transition-max-h duration-300 ${
+        className={`md:hidden absolute top-full left-0 w-full bg-light/95 backdrop-blur-sm overflow-hidden transition-max-h duration-300 dark:text-white dark:bg-slate-950 ${
           menuOpen ? "max-h-screen" : "max-h-0"
         }`}
       >
@@ -101,15 +107,19 @@ const Header = () => {
               href={link.href}
               className={`mx-2 transition ${
                 pathname === link.href
-                  ? "text-teal-500 font-semibold underline" // ✅ active styles for mobile
+                  ? "text-teal-500 font-semibold underline"
                   : "hover:text-teal-400 hover:underline"
               }`}
             >
               {link.label}
             </Link>
           ))}
-          <button>
-            <SunIcon />
+          <button
+            onClick={() => setMode(mode === "light" ? "dark" : "light")}
+            className="ml-4"
+            aria-label="Toggle Theme"
+          >
+            {mode === "light" ? <MoonIcon size={20} /> : <SunIcon size={20} />}
           </button>
         </nav>
 

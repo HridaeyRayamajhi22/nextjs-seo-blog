@@ -6,7 +6,7 @@ import profileImg from "@/public/profile-image.png"
 const Logo = () => {
   return (
     <div>
-      <Link href="/" className='flex items-center text-dark'>
+      <Link href="/" className='flex items-center text-dark dark:text-light'>
         {/* Image container */}
         <div className='relative w-12 sm:w-16 md:w-16 h-12 sm:h-16 md:h-16 rounded-full overflow-hidden border border-solid border-dark mr-3 sm:mr-5'>
           <Image 
