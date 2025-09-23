@@ -19,7 +19,7 @@ const BlogDetails = ({ blog, slug: blogSlug }) => {
 
       {/* Views (placeholder) */}
       <span className="text-sm md:text-base text-light/90 whitespace-nowrap transition-colors duration-300 hover:text-violet-200">
-        👀 <ViewCounter />
+        👀 <ViewCounter slug={blogSlug}/>
       </span>
 
       {/* Reading Time */}
