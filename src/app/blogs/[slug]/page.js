@@ -6,7 +6,7 @@ import { slug } from "github-slugger";
 import Image from "next/image";
 
 export async function generateStaticParams() {
-  return allBlogs.map((blog) => ({slug: blog._raw.flattenedPath}));
+  return allBlogs.map((blog) => ({ slug: blog._raw.flattenedPath }));
 }
 export default async function BlogPage({ params }) {
   const blog = allBlogs.find((blog) => blog._raw.flattenedPath === params.slug);
@@ -58,9 +58,24 @@ export default async function BlogPage({ params }) {
       </section>
 
       {/* ===== Blog Content with Sidebar ===== */}
-      <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-12 max-w-6xl mx-auto px-4 md:px-0">
+      <section className="flex flex-col lg:grid lg:grid-cols-12 gap-8 mt-12 max-w-6xl mx-auto px-4 md:px-0">
+        {/* Main Content (MDX Renderer) */}
+        <main className="order-1 lg:order-none lg:col-span-8 prose prose-invert max-w-none text-base md:text-lg leading-relaxed">
+          <RenderMdx blog={blog} />
+        </main>
+
         {/* Sidebar */}
-        <aside className="lg:col-span-4 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-2xl p-4 text-gray-100 shadow-xl border border-gray-600/30 sticky top-20 self-start max-h-[90vh] overflow-y-auto">
+        <aside
+          className="
+      order-2 lg:order-none 
+      lg:col-span-4 
+      bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 
+      rounded-2xl p-4 text-gray-100 shadow-xl border border-gray-600/30 
+      sticky top-20 self-start 
+      max-h-[90vh] overflow-y-auto
+      hidden lg:block
+    "
+        >
           {/* Header */}
           <div className="flex items-center gap-2 mb-4 pb-2 border-b border-gray-700/60">
             <div className="p-1.5 bg-lime-500/10 rounded-md">
@@ -85,7 +100,6 @@ export default async function BlogPage({ params }) {
 
           {/* TOC List */}
           <nav className="relative">
-            {/* Vertical line */}
             <div className="absolute left-3 top-0 bottom-0 w-0.5 bg-gradient-to-b from-lime-400/20 via-gray-600/30 to-transparent"></div>
 
             <ul className="space-y-1 relative text-sm md:text-base">
@@ -94,32 +108,31 @@ export default async function BlogPage({ params }) {
                   <a
                     href={`#${heading.slug}`}
                     className={`
-              flex items-start transition-all duration-200 ease-out
-              px-3 py-2 rounded-lg border border-transparent
-              group-hover:border-lime-400/30 group-hover:bg-gray-800/50
-              group-hover:translate-x-1
-              ${
-                heading.level === "one"
-                  ? "font-semibold text-gray-100 bg-gray-800/40"
-                  : heading.level === "two"
-                  ? "ml-4 text-gray-300"
-                  : "ml-8 text-gray-400 text-xs"
-              }
-            `}
-                  >
-                    {/* Dot indicator */}
-                    <div
-                      className={`
-                absolute left-2 top-1/2 transform -translate-y-1/2
-                w-1.5 h-1.5 rounded-full transition-all duration-200
+                flex items-start transition-all duration-200 ease-out
+                px-3 py-2 rounded-lg border border-transparent
+                group-hover:border-lime-400/30 group-hover:bg-gray-800/50
+                group-hover:translate-x-1
                 ${
                   heading.level === "one"
-                    ? "bg-lime-400 group-hover:scale-125"
+                    ? "font-semibold text-gray-100 bg-gray-800/40"
                     : heading.level === "two"
-                    ? "bg-gray-500 group-hover:bg-lime-400"
-                    : "bg-gray-600 group-hover:bg-lime-400"
+                    ? "ml-4 text-gray-300"
+                    : "ml-8 text-gray-400 text-xs"
                 }
               `}
+                  >
+                    <div
+                      className={`
+                  absolute left-2 top-1/2 transform -translate-y-1/2
+                  w-1.5 h-1.5 rounded-full transition-all duration-200
+                  ${
+                    heading.level === "one"
+                      ? "bg-lime-400 group-hover:scale-125"
+                      : heading.level === "two"
+                      ? "bg-gray-500 group-hover:bg-lime-400"
+                      : "bg-gray-600 group-hover:bg-lime-400"
+                  }
+                `}
                     ></div>
                     <span className="ml-3 leading-tight">{heading.text}</span>
                   </a>
@@ -133,11 +146,6 @@ export default async function BlogPage({ params }) {
             {blog.toc.length} sections
           </div>
         </aside>
-
-        {/* Main Content (MDX Renderer) */}
-        <main className="lg:col-span-8 prose prose-invert max-w-none text-base md:text-lg leading-relaxed">
-          <RenderMdx blog={blog} />
-        </main>
       </section>
     </article>
   );
