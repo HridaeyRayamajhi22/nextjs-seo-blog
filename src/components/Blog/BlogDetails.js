@@ -2,6 +2,7 @@ import { format, parseISO } from "date-fns";
 import Link from "next/link";
 import React from "react";
 import { slug } from "github-slugger";
+import ViewCounter from "./ViewCounter";
 
 const BlogDetails = ({ blog, slug: blogSlug }) => {
   if (!blog) return null;
@@ -18,7 +19,7 @@ const BlogDetails = ({ blog, slug: blogSlug }) => {
 
       {/* Views (placeholder) */}
       <span className="text-sm md:text-base text-light/90 whitespace-nowrap transition-colors duration-300 hover:text-violet-200">
-        👀 10 views
+        👀 <ViewCounter />
       </span>
 
       {/* Reading Time */}
