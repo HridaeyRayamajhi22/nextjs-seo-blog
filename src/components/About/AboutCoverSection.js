@@ -4,10 +4,10 @@ import profileCharacter from "../../../public/character.png";
 
 const AboutCoverSection = () => {
   return (
-    <section className="w-full min-h-[70vh] border-b-2 border-solid border-dark flex flex-col lg:flex-row items-center justify-center text-dark">
+    <section className="w-full min-h-[70vh] border-b-2 border-solid border-dark flex flex-col lg:flex-row items-center justify-center text-dark dark:border-gray dark:text-light">
       {/* Left Side - Image */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-6 lg:p-0">
-        <div className="w-full h-[50vh] lg:h-[80vh] flex items-center justify-center bg-gray-50 border-b-2 lg:border-b-0 lg:border-r-2 border-dark">
+        <div className="w-full h-[50vh] lg:h-[80vh] flex items-center justify-center bg-gray-50 border-b-2 lg:border-b-0 lg:border-r-2 border-dark dark:border-gray">
           <Image
             src={profileCharacter}
             alt="Hirdu character"

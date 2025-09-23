@@ -7,7 +7,7 @@ export default function About() {
     <>
       <AboutCoverSection />
       <Skills />
-      <h2 className="text-lg md:text-xl font-semibold text-gray-800 dark:text-gray-100 leading-relaxed text-center">
+      <h2 className="text-lg md:text-xl font-semibold text-gray-800 dark:text-gray-100 leading-relaxed text-center dark:text-light">
         Have a project in mind? 📞 Reach out from{" "}
         <Link
           href="/contact"
