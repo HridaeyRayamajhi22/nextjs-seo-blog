@@ -23,7 +23,7 @@ const BlogLayout1 = ({ blog }) => {
       </div>
 
       {/* Content */}
-      <div className="absolute bottom-0 p-4 md:p-10 z-20 w-full">
+      <div className="absolute bottom-0 p-4 md:p-10 z-20 w-full ">
         <Tag
           link={`/categories/${slug(blog.tags[0])}`}
           name={blog.tags[0]}
