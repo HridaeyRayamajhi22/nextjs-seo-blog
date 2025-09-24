@@ -39,8 +39,8 @@ const Header = () => {
             href={link.href}
             className={`transition ${
               pathname === link.href
-                ? "text-indigo-600 dark:text-indigo-400 font-semibold underline"
-                : "hover:text-indigo-500 dark:hover:text-indigo-300 hover:underline"
+                ? "text-lime-600 dark:text-lime-400 font-semibold underline"
+                : "hover:text-lime-500 dark:hover:text-lime-300 hover:underline"
             }`}
           >
             {link.label}
