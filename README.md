@@ -11,7 +11,7 @@ The blog includes:
 
 ### Demo
 
-Check out the live website here: 
+Check out the live website here: https://nextjs-seo-blog.onrender.com/
 
 ### Features
 
